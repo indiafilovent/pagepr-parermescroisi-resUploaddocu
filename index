@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Préparer ma croisière — Filovent</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════
+   DESIGN SYSTEM — FILOVENT RÉEL
+   Extrait direct du code source filovent.com
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+:root {
+  /* Couleurs exactes Filovent */
+  --navy: #081C37;
+  --red:  #AF141C;
+  --red-hover: #8E1016;
+  --blue-1: #015AA5;
+  --gray-bg: #F4F2EC;   /* --cl-gray-bg exact */
+  --gray-0:  #F5F2ED;
+  --gray-1:  #DDDAD3;
+  --gray-7:  #E0E4E4;
+  --gray-8:  #666666;
+  --gray-9:  #B1B5AF;
+  --white:   #FFFFFF;
+  --green:   #1E6B2E;
+  --warn-bg: #FEF9ED;
+  --warn-bd: #E8C84A;
+  --warn-tx: #6B4E00;
+
+  /* Typo exacte Filovent */
+  --font: 'Montserrat', Inter, Arial, sans-serif;
+
+  /* Espacements */
+  --container-max: 1438px;
+  --content-max: 900px;
+  --radius-pill: 50px;
+  --radius-sm: 4px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--white);
+  color: var(--navy);
+  font-size: 16px;
+  line-height: 1.375; /* 22/16 exact filovent */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── HEADER ──────────────────────────────── */
+.hdr {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-7);
+  height: 64px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  box-shadow: 0 1px 6px rgba(8,28,55,.06);
+}
+.hdr-logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+.hdr-mid {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hdr-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--gray-1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: var(--gray-8);
+}
+.hdr-info { line-height: 1.3; }
+.hdr-info-name { font-size: 12.5px; font-weight: 600; color: var(--navy); }
+.hdr-info-mail { font-size: 11.5px; color: var(--gray-8); }
+/* Bouton rouge pill — copie exacte filovent */
+.btn-red {
+  background: var(--red);
+  color: var(--white);
+  padding: 11px 20px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background .15s;
+  white-space: nowrap;
+}
+.btn-red:hover { background: var(--red-hover); }
+.btn-red-sm {
+  padding: 7px 16px;
+  font-size: 13px;
+}
+.hdr-right {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--gray-8);
+}
+
+/* ─── LAYOUT ─────────────────────────────── */
+.layout {
+  display: flex;
+  min-height: calc(100vh - 64px);
+  width: 100%;
+}
+
+/* Sidebar — style espace client filovent réel */
+.sb {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--white);
+  border-right: 1px solid var(--gray-7);
+  padding: 20px 0;
+}
+.sb-group { margin-bottom: 4px; }
+.sb-group-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--gray-9);
+  padding: 10px 20px 4px;
+}
+.sb-nav { list-style: none; }
+.sb-nav a {
+  display: flex;
+  align-items: center;
+  padding: 9px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: background .1s;
+}
+.sb-nav a:hover { background: var(--gray-0); }
+.sb-nav a.active {
+  color: var(--red);
+  font-weight: 700;
+  background: #FBF0F0;
+  border-left-color: var(--red);
+}
+.sb-sep { height: 1px; background: var(--gray-1); margin: 8px 0; }
+
+/* Zone principale */
+.main-wrap {
+  flex: 1;
+  background: var(--gray-bg);
+  padding: 0;
+  min-width: 0;
+}
+
+/* ─── HERO BANNIÈRE — bg cover comme magazine filovent ─── */
+.page-hero {
+  background: var(--navy);
+  background-image: linear-gradient(135deg, #081C37 0%, #0D2D55 60%, #0A2040 100%);
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  padding: 36px 52px;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.page-hero-inner { position: relative; z-index:1; }
+.page-hero h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.page-hero-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,.65);
+  font-weight: 400;
+}
+.page-hero-sub em {
+  font-style: italic;
+  color: rgba(255,255,255,.5);
+}
+
+/* ─── CONTENU ────────────────────────────── */
+.main-content {
+  padding: 32px 52px 72px;
+  max-width: var(--content-max);
+}
+
+/* Breadcrumb */
+.bc {
+  font-size: 12px;
+  color: var(--gray-8);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.bc a { color: var(--blue-1); text-decoration: none; }
+.bc a:hover { text-decoration: underline; }
+
+/* Barre de progression */
+.progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--white);
+  border: 1px solid var(--gray-7);
+  border-radius: var(--radius-sm);
+  padding: 13px 20px;
+  margin-bottom: 28px;
+}
+.progress-bar-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.progress-bar-track {
+  flex: 1;
+  height: 3px;
+  background: var(--gray-1);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--red);
+  border-radius: 99px;
+  transition: width .4s ease;
+  width: 0%;
+}
+.progress-bar-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--red);
+  min-width: 50px;
+  text-align: right;
+}
+
+/* ─── BLOCS ACCORDÉON ────────────────────── */
+.step {
+  background: var(--white);
+  border: 1px solid var(--gray-7);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: box-shadow .2s;
+}
+.step:hover { box-shadow: 0 2px 12px rgba(8,28,55,.07); }
+
+.step-hdr {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+.step-bar {
+  width: 3px;
+  align-self: stretch;
+  background: var(--gray-1);
+  flex-shrink: 0;
+  transition: background .2s;
+}
+.step.done .step-bar  { background: var(--green); }
+.step.partial .step-bar { background: var(--warn-bd); }
+
+.step-hdr-inner {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  transition: background .1s;
+}
+.step-hdr-inner:hover { background: var(--gray-0); }
+
+.step-num {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gray-1);
+  background: var(--white);
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all .2s;
+}
+.step.done .step-num    { background: var(--green); border-color: var(--green); color: var(--white); }
+.step.partial .step-num { background: var(--warn-bg); border-color: var(--warn-bd); color: var(--warn-tx); }
+
+.step-meta { flex: 1; }
+.step-title { font-size: 14.5px; font-weight: 700; color: var(--navy); }
+.step-status { font-size: 11.5px; color: var(--gray-9); margin-top: 2px; font-weight: 500; }
+.step.done .step-status    { color: var(--green); }
+.step.partial .step-status { color: #7A5A00; }
+
+.step-chevron {
+  font-size: 9px;
+  color: var(--gray-9);
+  transition: transform .2s;
+  padding: 18px 22px 18px 0;
+}
+.step-chevron.open { transform: rotate(180deg); }
+
+.step-body { display: none; }
+.step-body.open { display: block; }
+.step-content {
+  padding: 24px 28px 26px 32px;
+  border-top: 1px solid var(--gray-7);
+}
+
+/* ─── COMPOSANTS TEXTE ──────────────────── */
+/* À lire — discret, filet gauche navy */
+.lire {
+  font-size: 14px;
+  color: var(--gray-8);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  padding-left: 14px;
+  border-left: 2px solid var(--gray-1);
+}
+.lire strong { color: var(--navy); font-weight: 600; }
+
+/* À faire — encadré rouge filovent */
+.faire {
+  background: #FBF0F0;
+  border: 1px solid #DDBABA;
+  border-left: 3px solid var(--red);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin-bottom: 16px;
+}
+.faire-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--red);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.faire-content {
+  font-size: 14px;
+  color: var(--navy);
+  line-height: 1.65;
+}
+/* Badge obligatoire — pill rouge discret */
+.badge-oblig {
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: var(--red);
+  background: #FDEAEA;
+  border: 1px solid #DDBABA;
+  border-radius: 100px;
+  padding: 2px 8px;
+}
+
+/* Alerte retard — fond ambre */
+.alerte {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-bd);
+  border-left: 3px solid #C99A00;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  margin-top: 16px;
+}
+.alerte-label {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: #C99A00; margin-bottom: 3px;
+}
+.alerte-text {
+  font-size: 14px; color: var(--warn-tx); line-height: 1.55; font-weight: 500;
+}
+
+/* Email link */
+.eml {
+  color: var(--blue-1);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(1,90,165,.3);
+  padding-bottom: 1px;
+  transition: border-color .15s;
+}
+.eml:hover { border-color: var(--blue-1); }
+
+/* ─── UPLOAD ZONE ────────────────────────── */
+.upload-wrap {
+  margin: 12px 0 6px;
+}
+.upload-zone {
+  border: 2px dashed var(--gray-7);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  background: var(--gray-bg);
+  cursor: pointer;
+  position: relative;
+  transition: border-color .2s, background .2s;
+}
+.upload-zone:hover,
+.upload-zone.drag-over {
+  border-color: var(--navy);
+  background: #EEF2F8;
+}
+.upload-zone.done {
+  border-color: var(--green);
+  border-style: solid;
+  background: #F0FAF1;
+}
+.upload-zone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.upload-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  pointer-events: none;
+}
+.upload-ico {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1.5px solid var(--gray-7);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; flex-shrink: 0;
+  transition: all .2s;
+}
+.upload-zone.done .upload-ico {
+  background: var(--green);
+  border-color: var(--green);
+  font-size: 15px;
+}
+.upload-txt { flex: 1; }
+.upload-txt-main {
+  font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 2px;
+}
+.upload-zone.done .upload-txt-main { color: var(--green); }
+.upload-txt-sub { font-size: 11.5px; color: var(--gray-8); }
+.upload-cta {
+  background: var(--navy);
+  color: var(--white);
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 12px; font-weight: 700;
+  white-space: nowrap; flex-shrink: 0;
+  pointer-events: none;
+  transition: background .15s;
+}
+.upload-zone.done .upload-cta { background: var(--green); }
+
+/* Liste fichiers uploadés */
+.upload-list {
+  margin-top: 8px;
+  display: flex; flex-direction: column; gap: 5px;
+}
+.upload-file {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 12px;
+  background: var(--white);
+  border: 1px solid #C5E8C7;
+  border-radius: var(--radius-sm);
+  font-size: 13px; color: var(--navy);
+}
+.upload-file-ico { font-size: 15px; flex-shrink: 0; }
+.upload-file-name { flex: 1; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.upload-file-size { font-size: 11px; color: var(--gray-8); white-space: nowrap; flex-shrink: 0; }
+.upload-file-del {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: none; border: 1px solid var(--gray-9);
+  color: var(--gray-8); font-size: 10px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all .12s; z-index: 3; position: relative;
+}
+.upload-file-del:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+
+/* Note CRM */
+.upload-crm {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--gray-8); font-style: italic;
+  margin-top: 7px;
+}
+.upload-crm-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green); flex-shrink: 0;
+}
+
+/* ─── CHECK ZONE ─────────────────────────── */
+.cz {
+  margin-top: 16px;
+  border: 1px solid var(--gray-7);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.cz-hdr {
+  background: var(--gray-bg);
+  border-bottom: 1px solid var(--gray-7);
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cz-hdr-title {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px; color: var(--gray-8);
+}
+.cz-hdr-count { font-size: 11px; font-weight: 700; color: var(--gray-8); }
+
+/* Skip row */
+.skip-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px;
+  background: var(--gray-0);
+  border-bottom: 1px solid var(--gray-7);
+  cursor: pointer;
+  font-size: 13px; color: var(--gray-8); font-style: italic;
+  transition: background .1s;
+}
+.skip-row:hover { background: var(--gray-1); }
+.skip-row.active { background: #E8EDF3; }
+.skip-box {
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--gray-9);
+  border-radius: 3px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--white);
+  transition: all .15s;
+}
+.skip-row.active .skip-box { background: var(--gray-9); border-color: var(--gray-9); }
+.skip-row.active .skip-box::after { content:'–'; color:white; font-size:12px; font-weight:700; line-height:1; }
+
+/* Check items */
+.ci-list { list-style: none; }
+.ci {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--gray-0);
+  cursor: pointer;
+  font-size: 14px; color: var(--navy); line-height: 1.45;
+  transition: background .1s;
+}
+.ci:last-child { border-bottom: none; }
+.ci:hover { background: var(--gray-0); }
+.ci-box {
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--gray-9);
+  border-radius: 3px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--white); transition: all .15s;
+}
+.ci.ok .ci-box { background: var(--green); border-color: var(--green); }
+.ci.ok .ci-box::after {
+  content: '';
+  width: 5px; height: 9px;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(45deg) translate(-1px,-1px);
+}
+.ci.ok .ci-label { text-decoration: line-through; color: var(--gray-9); }
+.ci.locked { opacity: .35; cursor: not-allowed; pointer-events: none; }
+.ci-label { flex: 1; }
+.sub-bloc {
+  border: 1px solid var(--gray-7);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+/* ─── RADIO VOLS ─────────────────────────── */
+.vols-grid { display: flex; flex-direction: column; gap: 8px; margin-bottom: 6px; }
+.vols-btn {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px;
+  border: 1.5px solid var(--gray-7);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  cursor: pointer; user-select: none; overflow: hidden;
+  max-height: 120px; opacity: 1;
+  transition: border-color .2s, background .2s, max-height .4s ease, opacity .3s ease, padding .3s ease, margin .3s ease;
+}
+.vols-btn:hover { border-color: var(--gray-9); background: var(--gray-0); }
+.vols-btn.sel-a { border-color: var(--navy); background: #EEF2F8; }
+.vols-btn.sel-b { border-color: #1793D7; background: #EAF4FB; }
+.vols-btn.sel-c { border-color: #6B4EA5; background: #F2EEF9; }
+.vols-btn.sel-d { border-color: var(--red); background: #FBF0F0; }
+.vols-btn.hidden { max-height:0; opacity:0; padding-top:0; padding-bottom:0; border-width:0; margin-bottom:0; pointer-events:none; }
+.vols-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid var(--gray-9); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--white); pointer-events: none;
+  transition: border-color .15s;
+}
+.vols-btn.sel-a .vols-dot { border-color: var(--navy); }
+.vols-btn.sel-a .vols-dot::after { content:''; width:10px; height:10px; border-radius:50%; background:var(--navy); display:block; }
+.vols-btn.sel-b .vols-dot { border-color:#1793D7; }
+.vols-btn.sel-b .vols-dot::after { content:''; width:10px; height:10px; border-radius:50%; background:#1793D7; display:block; }
+.vols-btn.sel-c .vols-dot { border-color:#6B4EA5; }
+.vols-btn.sel-c .vols-dot::after { content:''; width:10px; height:10px; border-radius:50%; background:#6B4EA5; display:block; }
+.vols-btn.sel-d .vols-dot { border-color:var(--red); }
+.vols-btn.sel-d .vols-dot::after { content:''; width:10px; height:10px; border-radius:50%; background:var(--red); display:block; }
+.vols-btn-main { font-size: 13.5px; font-weight: 600; color: var(--navy); }
+.vols-btn-sub { font-size: 12px; color: var(--gray-8); margin-top: 2px; }
+.vols-change {
+  display: none; font-size: 12px; color: var(--blue-1);
+  cursor: pointer; text-decoration: underline;
+  margin-bottom: 18px; margin-top: 6px;
+}
+.vols-change.visible { display: inline-block; }
+.cas-wrap { overflow: hidden; max-height: 0; opacity: 0; transition: max-height .45s ease, opacity .3s ease; }
+.cas-wrap.open { max-height: 2000px; opacity: 1; }
+
+/* ─── INFOS IMPORTANTES ──────────────────── */
+.info-section { padding: 18px 0; border-bottom: 1px solid var(--gray-7); }
+.info-section:first-child { padding-top: 0; }
+.info-section:last-child { border-bottom: none; padding-bottom: 0; }
+.info-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+/* ─── RÉCAPITULATIF ──────────────────────── */
+.recap {
+  background: var(--white);
+  border: 1px solid var(--gray-7);
+  border-radius: var(--radius-sm);
+  margin: 32px 0 16px;
+  overflow: hidden;
+}
+.recap-hdr {
+  background: var(--navy);
+  padding: 16px 22px;
+  display: flex; align-items: center; gap: 16px;
+}
+.recap-hdr-title { font-size: 13.5px; font-weight: 700; color: var(--white); white-space: nowrap; }
+.recap-bar { flex: 1; height: 3px; background: rgba(255,255,255,.15); border-radius: 99px; overflow: hidden; }
+.recap-fill { height: 100%; background: #4CAF6A; border-radius: 99px; transition: width .35s; }
+.recap-count { font-size: 12px; font-weight: 700; color: rgba(255,255,255,.7); white-space: nowrap; }
+.recap-body { padding: 6px 0; }
+.recap-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 22px;
+  font-size: 14px; color: var(--navy);
+  border-bottom: 1px solid var(--gray-0);
+}
+.recap-row:last-child { border-bottom: none; }
+.recap-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gray-1); flex-shrink: 0; transition: background .2s; }
+.recap-row.ok .recap-dot { background: var(--green); }
+.recap-row.ok .recap-label { color: var(--gray-8); text-decoration: line-through; }
+.recap-row.skip .recap-dot { background: var(--gray-1); }
+.recap-row.skip .recap-label { color: var(--gray-9); font-style: italic; }
+.recap-label { flex: 1; }
+.recap-note { font-size: 11px; color: var(--gray-8); font-style: italic; }
+
+/* ─── BON À SAVOIR ───────────────────────── */
+.bas-heading {
+  font-size: 14px; font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase; letter-spacing: .5px;
+  margin: 32px 0 6px;
+}
+.bas-sub { font-size: 13px; color: var(--gray-8); font-style: italic; margin-bottom: 16px; }
+.bas-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 20px; }
+.bas-card {
+  background: var(--white);
+  border: 1px solid var(--gray-7);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+}
+.bas-card-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--navy); margin-bottom: 8px; }
+.bas-card-text { font-size: 13px; color: var(--gray-8); line-height: 1.6; }
+
+/* ─── BANDEAU AIDE — section navy comme filovent ─── */
+.help-band {
+  background: var(--navy);
+  border-radius: var(--radius-sm);
+  padding: 22px 28px;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.help-band-txt { flex: 1; }
+.help-band-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.help-band-sub { font-size: 13px; color: rgba(255,255,255,.6); }
+.help-band-link {
+  color: var(--white); font-size: 13px; font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.4);
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+.help-band-link:hover { border-color: rgba(255,255,255,.8); }
+
+/* ─── TOAST ──────────────────────────────── */
+.toast {
+  position: fixed; bottom: 32px; left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--red); color: var(--white);
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  font-size: 13px; font-weight: 700;
+  box-shadow: 0 4px 20px rgba(175,20,28,.35);
+  z-index: 9999; opacity: 0;
+  transition: opacity .25s ease, transform .25s ease;
+  pointer-events: none; white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@keyframes shake {
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-6px)} 40%{transform:translateX(6px)}
+  60%{transform:translateX(-4px)} 80%{transform:translateX(4px)}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════ -->
+<header class="hdr">
+  <a href="#" class="hdr-logo">Filovent</a>
+  <div class="hdr-mid">
+    <div class="hdr-avatar">VCF</div>
+    <div class="hdr-info">
+      <div class="hdr-info-name">Votre conseiller Filovent</div>
+      <div class="hdr-info-mail">info@filovent.com</div>
+    </div>
+    <a href="tel:+33170809752" class="btn-red btn-red-sm">+33 1 70 80 97 52</a>
+  </div>
+  <div class="hdr-right">
+    <span>fr</span>
+    <span style="font-weight:700;">Bonjour</span>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- ══ SIDEBAR ══════════════════════════════════ -->
+  <aside class="sb">
+    <div class="sb-group">
+      <ul class="sb-nav">
+        <li><a href="#">&rsaquo;&nbsp; Mes réservations</a></li>
+        <li><a href="#">&rsaquo;&nbsp; Mes devis</a></li>
+        <li><a href="#">&rsaquo;&nbsp; Partagés avec moi</a></li>
+        <li><a href="#">&rsaquo;&nbsp; Mes bons d'achats</a></li>
+      </ul>
+    </div>
+    <div class="sb-sep"></div>
+    <div class="sb-group">
+      <div class="sb-group-title">Mon tableau de bord</div>
+      <ul class="sb-nav">
+        <li><a href="#">Bulletin de réservation</a></li>
+        <li><a href="#">Mes croisières</a></li>
+        <li><a href="#" class="active">Préparer ma croisière</a></li>
+        <li><a href="#">Assurance</a></li>
+        <li><a href="#">Évaluer ma croisière</a></li>
+        <li><a href="#">Coordonnées partenaire</a></li>
+      </ul>
+    </div>
+    <div class="sb-sep"></div>
+    <div class="sb-group">
+      <ul class="sb-nav">
+        <li><a href="#">&rsaquo;&nbsp; Mon profil</a></li>
+        <li><a href="#">&rsaquo;&nbsp; Mon CV nautique</a></li>
+      </ul>
+    </div>
+    <div class="sb-sep"></div>
+    <ul class="sb-nav">
+      <li><a href="#" style="color:var(--gray-8);">Déconnexion</a></li>
+    </ul>
+  </aside>
+
+  <!-- ══ CONTENU PRINCIPAL ═════════════════════════ -->
+  <div class="main-wrap">
+
+    <!-- Hero bannière -->
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <h1>Préparer ma croisière</h1>
+        <p class="page-hero-sub">
+          Suivez ces 4 étapes et cochez chaque point pour partir l'esprit tranquille.
+          <em> Certaines rubriques peuvent ne pas vous concerner — une case "Je passe à la suite" vous permet de continuer.</em>
+        </p>
+      </div>
+    </div>
+
+    <!-- Contenu -->
+    <div class="main-content">
+
+      <nav class="bc">
+        <a href="#">Espace client</a>
+        <span>&rsaquo;</span>
+        <span>Préparer ma croisière</span>
+      </nav>
+
+      <!-- Barre progression -->
+      <div class="progress-bar">
+        <span class="progress-bar-label">Progression</span>
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="gFill"></div></div>
+        <span class="progress-bar-count" id="gCount">0 / —</span>
+      </div>
+
+      <!-- ══ ÉTAPE 1 — PASSEPORT ═══════════════════ -->
+      <div class="step" id="b-pass">
+        <div class="step-hdr" onclick="toggleStep('pass')">
+          <div class="step-bar"></div>
+          <div class="step-hdr-inner">
+            <div class="step-num">1</div>
+            <div class="step-meta">
+              <div class="step-title">Passeport</div>
+              <div class="step-status" id="bs-pass">À compléter</div>
+            </div>
+            <div class="step-chevron open" id="bc-pass">&#9660;</div>
+          </div>
+        </div>
+        <div class="step-body open" id="bb-pass">
+          <div class="step-content">
+            <p class="lire">Selon votre destination, le passeport peut être obligatoire. C'est dans tous les cas le document que nous utilisons pour organiser votre accueil, vos transferts et votre embarquement.</p>
+            <div class="faire">
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Envoyez la copie du passeport (page avec photographie) à notre équipe conciergerie : <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a></div>
+              <div class="upload-wrap">
+                <div class="upload-zone" id="uz-pass">
+                  <input type="file" id="fi-pass" accept=".pdf,.jpg,.jpeg,.png,.webp" multiple onchange="handleFiles('pass', this.files)" />
+                  <div class="upload-inner">
+                    <div class="upload-ico" id="uico-pass">📄</div>
+                    <div class="upload-txt">
+                      <div class="upload-txt-main" id="utxt-pass">Déposer ou sélectionner la copie du passeport</div>
+                      <div class="upload-txt-sub">PDF, JPG, PNG · 10 Mo max · Plusieurs fichiers acceptés</div>
+                    </div>
+                    <div class="upload-cta" id="ucta-pass">Parcourir</div>
+                  </div>
+                </div>
+                <div class="upload-list" id="ul-pass"></div>
+                <div class="upload-crm"><span class="upload-crm-dot"></span>Document transmis à votre dossier Filovent — connexion CRM à intégrer par les développeurs</div>
+              </div>
+            </div>
+            <div class="cz">
+              <div class="cz-hdr"><span class="cz-hdr-title">Ma check-list passeport</span><span class="cz-hdr-count" id="czp-pass">0 / 4</span></div>
+              <div class="skip-row" id="skip-pass" onclick="toggleSkip('pass')"><div class="skip-box" id="sb-pass"></div><span>Cela ne me concerne pas — je passe à la suite</span></div>
+              <ul class="ci-list" id="cl-pass">
+                <li class="ci" onclick="toggleCI(this,'pass')"><div class="ci-box"></div><span class="ci-label">Mon passeport est valide au moins 6 mois après mon retour</span></li>
+                <li class="ci" onclick="toggleCI(this,'pass')"><div class="ci-box"></div><span class="ci-label">Mon passeport comporte au moins 2 pages vierges</span></li>
+                <li class="ci" onclick="toggleCI(this,'pass')"><div class="ci-box"></div><span class="ci-label">Le nom correspond exactement à celui figurant sur mes billets d'avion</span></li>
+                <li class="ci" id="ci-pass-doc" onclick="toggleCI(this,'pass')"><div class="ci-box"></div><span class="ci-label">J'ai envoyé la copie de mon passeport à concierge@filovent.com</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ ÉTAPE 2 — VOLS ════════════════════════ -->
+      <div class="step" id="b-vols">
+        <div class="step-hdr" onclick="toggleStep('vols')">
+          <div class="step-bar"></div>
+          <div class="step-hdr-inner">
+            <div class="step-num">2</div>
+            <div class="step-meta">
+              <div class="step-title">Vols et transferts</div>
+              <div class="step-status" id="bs-vols">À compléter</div>
+            </div>
+            <div class="step-chevron open" id="bc-vols">&#9660;</div>
+          </div>
+        </div>
+        <div class="step-body open" id="bb-vols">
+          <div class="step-content">
+            <p style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:16px;">Quelle est votre situation concernant les vols ?</p>
+            <div class="vols-grid">
+              <div class="vols-btn" id="btn-a"><div class="vols-dot"></div><div><div class="vols-btn-main">Filovent a réservé tous mes vols</div><div class="vols-btn-sub">Vols internationaux et intérieurs inclus</div></div></div>
+              <div class="vols-btn" id="btn-b"><div class="vols-dot"></div><div><div class="vols-btn-main">Filovent a réservé uniquement mes vols internationaux</div><div class="vols-btn-sub">J'ai réservé mes vols intérieurs moi-même</div></div></div>
+              <div class="vols-btn" id="btn-c"><div class="vols-dot"></div><div><div class="vols-btn-main">Filovent a réservé uniquement mes vols intérieurs</div><div class="vols-btn-sub">J'ai réservé mes vols internationaux moi-même</div></div></div>
+              <div class="vols-btn" id="btn-d"><div class="vols-dot"></div><div><div class="vols-btn-main">J'ai réservé tous mes vols moi-même</div><div class="vols-btn-sub">Toutes les informations de vol sont à nous transmettre</div></div></div>
+            </div>
+            <span class="vols-change" id="vols-change" onclick="resetVols()">Modifier mon choix</span>
+
+            <!-- CAS A -->
+            <div class="cas-wrap" id="cas-a">
+              <p class="lire">Vos billets sont entièrement entre nos mains — vous n'avez rien à nous transmettre concernant vos vols.</p>
+              <div class="faire"><div class="faire-label">À faire <span class="badge-oblig">Obligatoire</span></div><div class="faire-content">Effectuez votre enregistrement en ligne la veille du départ, directement sur le site de votre compagnie aérienne.</div></div>
+              <div class="sub-bloc"><ul class="ci-list" id="cl-a1"><li class="ci" onclick="toggleSubCI(this,'a1')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span></li></ul></div>
+              <div class="faire" style="margin-top:14px;"><div class="faire-label">À faire</div><div class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières" > "Itinéraire"</strong>.</div></div>
+              <div class="sub-bloc"><ul class="ci-list" id="cl-a2"><li class="ci locked" onclick="toggleSubCI(this,'a2')"><div class="ci-box"></div><span class="ci-label">Si des transferts sont inclus dans mon séjour, j'ai vérifié les détails dans "Mes croisières" > "Itinéraire"</span></li></ul></div>
+              <div class="alerte"><div class="alerte-label">À noter</div><div class="alerte-text">En cas de retard ou modification de vol, contactez-nous immédiatement. Nous adapterons l'organisation.</div></div>
+            </div>
+
+            <!-- CAS B -->
+            <div class="cas-wrap" id="cas-b">
+              <p class="lire">Vos vols internationaux sont pris en charge. En revanche, vos vols intérieurs sont à votre charge — merci de nous transmettre leurs informations pour coordonner l'ensemble de votre itinéraire.</p>
+              <div class="faire"><div class="faire-label">À faire</div>
+              <div class="faire-content">Transmettez-nous les informations de vos vols intérieurs : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a>
+              <div class="upload-wrap">
+                <div class="upload-zone" id="uz-vb">
+                  <input type="file" id="fi-vb" accept=".pdf,.jpg,.jpeg,.png,.eml,.msg" multiple onchange="handleFiles('vb', this.files)" />
+                  <div class="upload-inner">
+                    <div class="upload-ico" id="uico-vb">✈️</div>
+                    <div class="upload-txt">
+                      <div class="upload-txt-main" id="utxt-vb">Déposer votre confirmation de vols intérieurs</div>
+                      <div class="upload-txt-sub">PDF, JPG, PNG, e-mail exporté · 10 Mo max</div>
+                    </div>
+                    <div class="upload-cta" id="ucta-vb">Parcourir</div>
+                  </div>
+                </div>
+                <div class="upload-list" id="ul-vb"></div>
+                <div class="upload-crm"><span class="upload-crm-dot"></span>Document transmis à votre dossier Filovent — connexion CRM à intégrer par les développeurs</div>
+              </div>
+              </div></div>
+              <div class="sub-bloc"><ul class="ci-list" id="cl-b1"><li class="ci" id="ci-b1-doc" onclick="toggleSubCI(this,'b1')"><div class="ci-box"></div><span class="ci-label">J'ai transmis les informations de mes vols intérieurs à concierge@filovent.com</span></li></ul></div>
+              <div class="faire" style="margin-top:14px;"><div class="faire-label">À faire <span class="badge-oblig">Obligatoire</span></div><div class="faire-content">Effectuez votre enregistrement en ligne la veille du départ. Cette étape n'est pas nécessaire pour les vols charter.</div></div>
+              <div class="sub-bloc"><ul class="ci-list" id="cl-b2"><li class="ci" onclick="toggleSubCI(this,'b2')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span></li></ul></div>
+              <div class="faire" style="margin-top:14px;"><div class="faire-label">À faire</div><div class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières" > "Itinéraire"</strong>.</div></div>
+              <div class="sub-bloc"><ul class="ci-list" id="cl-b3"><li class="ci locked" onclick="toggleSubCI(this,'b3')"><div class="ci-box"></div><span class="ci-label">Si des transferts sont inclus dans mon séjour, j'ai vérifié les détails dans "Mes croisières" > "Itinéraire"</span></li></ul></div>
+              <div class="alerte"><div class="alerte-label">À noter</div><div class="alerte-text">En cas de retard ou modification de vol, contactez-nous immédiatement. Nous adapterons l'organisation.</div></div>
+            </div>
+
+            <!-- CAS C -->
+            <div class="cas-wrap" id="cas-c">
+              <p class="lire">Vos vols intérieurs sont pris en charge. En revanche, vos vols internationaux sont à votre charge — merci de nous transmettre leurs informations pour coordonner l'ensemble de votre itinéraire.</p>
+              <div class="faire"><div class="faire-label">À faire</div>
+              <div class="faire-content">Transmettez-nous les informations de vos vols internationaux : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a>
+              <div class="upload-wrap">
+                <div class="upload-zone" id="uz-vc">
+                  <input type="file" id="fi-vc" accept=".pdf,.jpg,.jpeg,.png,.eml,.msg" multiple onchange="handleFiles('vc', this.files)" />
+                  <div class="upload-inner">
+                    <div class="upload-ico" id="uico-vc">✈️</div>
+                    <div class="upload-txt">
+                      <div class="upload-txt-main" id="utxt-vc">Déposer votre confirmation de vols internationaux</div>
+                      <div class="upload-txt-sub">PDF, JPG, PNG, e-mail exporté · 10 Mo max</div>
+                    </div>
+                    <div class="upload-cta" id="ucta-vc">Parcourir</div>
+                  </div>
+                </div>
+                <div class="upload-list" id="ul-vc"></div>
+                <div class="upload-crm"><span class="upload-crm-dot"></span>Document transmis à votre dossier Filovent — connexion CRM à intégrer par les développeurs</div>
+              </div>
+              </div></div>
+              <div class="sub-bloc"><ul class="ci-list" id="cl-c1"><li class="ci" id="ci-c1-doc" onclick="toggleSubCI(this,'c1')"><div class="ci-box"></div><span class="ci-label">J'ai transmis les informations de mes vols internationaux à concierge@filovent.com</span></li></ul></div>
+              <div class="faire" style="margin-top:14px;"><div class="faire-label">À faire <span class="badge-oblig">Obligatoire</span></div><div class="faire-content">Effectuez votre enregistrement en ligne la veille du départ. Cette étape n'est pas nécessaire pour les vols charter.</div></div>
+              <div class="sub-bloc"><ul class="ci-list" id="cl-c2"><li class="ci" onclick="toggleSubCI(this,'c2')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span></li></ul></div>
+              <div class="faire" style="margin-top:14px;"><div class="faire-label">À faire</div><div class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières" > "Itinéraire"</strong>.</div></div>
+              <div class="sub-bloc"><ul class="ci-list" id="cl-c3"><li class="ci locked" onclick="toggleSubCI(this,'c3')"><div class="ci-box"></div><span class="ci-label">Si des transferts sont inclus dans mon séjour, j'ai vérifié les détails dans "Mes croisières" > "Itinéraire"</span></li></ul></div>
+              <div class="alerte"><div class="alerte-label">À noter</div><div class="alerte-text">En cas de retard ou modification de vol, contactez-nous immédiatement. Nous adapterons l'organisation.</div></div>
+            </div>
+
+            <!-- CAS D -->
+            <div class="cas-wrap" id="cas-d">
+              <p class="lire">Tous vos vols sont à votre charge — merci de nous transmettre l'ensemble de vos informations de vol pour que nous puissions organiser vos transferts dans les meilleures conditions.</p>
+              <div class="faire"><div class="faire-label">À faire</div>
+              <div class="faire-content">Transmettez-nous vos informations de vol : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a>
+              <div class="upload-wrap">
+                <div class="upload-zone" id="uz-vd">
+                  <input type="file" id="fi-vd" accept=".pdf,.jpg,.jpeg,.png,.eml,.msg" multiple onchange="handleFiles('vd', this.files)" />
+                  <div class="upload-inner">
+                    <div class="upload-ico" id="uico-vd">✈️</div>
+                    <div class="upload-txt">
+                      <div class="upload-txt-main" id="utxt-vd">Déposer vos confirmations de vols</div>
+                      <div class="upload-txt-sub">PDF, JPG, PNG, e-mail exporté · 10 Mo max · Plusieurs fichiers acceptés</div>
+                    </div>
+                    <div class="upload-cta" id="ucta-vd">Parcourir</div>
+                  </div>
+                </div>
+                <div class="upload-list" id="ul-vd"></div>
+                <div class="upload-crm"><span class="upload-crm-dot"></span>Document transmis à votre dossier Filovent — connexion CRM à intégrer par les développeurs</div>
+              </div>
+              </div></div>
+              <div class="sub-bloc"><ul class="ci-list" id="cl-d1"><li class="ci" id="ci-d1-doc" onclick="toggleSubCI(this,'d1')"><div class="ci-box"></div><span class="ci-label">J'ai transmis mes informations de vol à concierge@filovent.com</span></li></ul></div>
+              <div class="faire" style="margin-top:14px;"><div class="faire-label">À faire <span class="badge-oblig">Obligatoire</span></div><div class="faire-content">Effectuez votre enregistrement en ligne la veille du départ. Cette étape n'est pas nécessaire pour les vols charter.</div></div>
+              <div class="sub-bloc"><ul class="ci-list" id="cl-d2"><li class="ci" onclick="toggleSubCI(this,'d2')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span></li></ul></div>
+              <div class="faire" style="margin-top:14px;"><div class="faire-label">À faire</div><div class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières" > "Itinéraire"</strong>.</div></div>
+              <div class="sub-bloc"><ul class="ci-list" id="cl-d3"><li class="ci locked" onclick="toggleSubCI(this,'d3')"><div class="ci-box"></div><span class="ci-label">Si des transferts sont inclus dans mon séjour, j'ai vérifié les détails dans "Mes croisières" > "Itinéraire"</span></li></ul></div>
+              <div class="alerte"><div class="alerte-label">À noter</div><div class="alerte-text">En cas de retard ou modification de vol, contactez-nous immédiatement. Nous adapterons l'organisation.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ ÉTAPE 3 — VISA ════════════════════════ -->
+      <div class="step" id="b-visa">
+        <div class="step-hdr" onclick="toggleStep('visa')">
+          <div class="step-bar"></div>
+          <div class="step-hdr-inner">
+            <div class="step-num">3</div>
+            <div class="step-meta">
+              <div class="step-title">Visa et formalités d'entrée</div>
+              <div class="step-status" id="bs-visa">À compléter</div>
+            </div>
+            <div class="step-chevron open" id="bc-visa">&#9660;</div>
+          </div>
+        </div>
+        <div class="step-body open" id="bb-visa">
+          <div class="step-content">
+            <p class="lire">L'obligation de visa dépend de votre nationalité et de votre destination. Les démarches sont à votre charge — vérifiez-les auprès des autorités officielles dès votre réservation confirmée. <strong>Certaines démarches prennent plusieurs semaines — anticipez.</strong></p>
+            <div class="cz">
+              <div class="cz-hdr"><span class="cz-hdr-title">Ma check-list visa</span><span class="cz-hdr-count" id="czp-visa">0 / 2</span></div>
+              <div class="skip-row" id="skip-visa" onclick="toggleSkip('visa')"><div class="skip-box" id="sb-visa"></div><span>Aucun visa requis pour ma destination — je passe à la suite</span></div>
+              <ul class="ci-list" id="cl-visa">
+                <li class="ci" onclick="toggleCI(this,'visa')"><div class="ci-box"></div><span class="ci-label">J'ai vérifié si un visa est nécessaire pour ma destination</span></li>
+                <li class="ci" onclick="toggleCI(this,'visa')"><div class="ci-box"></div><span class="ci-label">Mes démarches de visa sont en cours ou finalisées</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ ÉTAPE 4 — INFOS IMPORTANTES ══════════ -->
+      <div class="step" id="b-infos">
+        <div class="step-hdr" onclick="toggleStep('infos')">
+          <div class="step-bar"></div>
+          <div class="step-hdr-inner">
+            <div class="step-num">4</div>
+            <div class="step-meta">
+              <div class="step-title">Informations importantes</div>
+              <div class="step-status" id="bs-infos">À compléter</div>
+            </div>
+            <div class="step-chevron open" id="bc-infos">&#9660;</div>
+          </div>
+        </div>
+        <div class="step-body open" id="bb-infos">
+          <div class="step-content">
+
+            <div class="info-section">
+              <div class="info-section-title">Régimes alimentaires et besoins spécifiques</div>
+              <p class="lire">Pour prendre en compte vos besoins personnels, merci de nous signaler vos allergies ou régimes spécifiques <strong>au moins 2 semaines avant le départ</strong>, ainsi que tout besoin particulier (mobilité réduite, besoins médicaux).</p>
+              <div class="faire">
+                <div class="faire-label">À faire</div>
+                <div class="faire-content">Signalez-nous ces informations à : <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a></div>
+              </div>
+              <div class="cz">
+                <div class="cz-hdr"><span class="cz-hdr-title">Check-list régimes & besoins</span><span class="cz-hdr-count" id="czp-reg">0 / 2</span></div>
+                <div class="skip-row" id="skip-reg" onclick="toggleSkip('reg')"><div class="skip-box" id="sb-reg"></div><span>Aucun régime ni besoin particulier — je passe à la suite</span></div>
+                <ul class="ci-list" id="cl-reg">
+                  <li class="ci" onclick="toggleCI(this,'reg')"><div class="ci-box"></div><span class="ci-label">J'ai signalé mes allergies ou régimes alimentaires</span></li>
+                  <li class="ci" onclick="toggleCI(this,'reg')"><div class="ci-box"></div><span class="ci-label">J'ai signalé mes besoins spécifiques</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="info-section">
+              <div class="info-section-title">Assurance voyage</div>
+              <p class="lire">Nous la recommandons vivement. Vous pouvez la souscrire via Filovent ou auprès de l'assureur de votre choix. <em>Lien assurance à ajouter</em></p>
+              <div class="cz">
+                <div class="cz-hdr"><span class="cz-hdr-title">Check-list assurance</span><span class="cz-hdr-count" id="czp-ass">0 / 1</span></div>
+                <div class="skip-row" id="skip-ass" onclick="toggleSkip('ass')"><div class="skip-box" id="sb-ass"></div><span>Je ne souhaite pas souscrire d'assurance — je passe à la suite</span></div>
+                <ul class="ci-list" id="cl-ass">
+                  <li class="ci" onclick="toggleCI(this,'ass')"><div class="ci-box"></div><span class="ci-label">Mon assurance voyage est souscrite</span></li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ RÉCAPITULATIF ═════════════════════════ -->
+      <div class="recap">
+        <div class="recap-hdr">
+          <span class="recap-hdr-title">Récapitulatif — Vérification avant départ</span>
+          <div class="recap-bar"><div class="recap-fill" id="rFill"></div></div>
+          <span class="recap-count" id="rCount">0 / 8</span>
+        </div>
+        <div class="recap-body">
+          <div class="recap-row" id="r0"><div class="recap-dot"></div><span class="recap-label">Copie(s) des passeports envoyées</span><span class="recap-note"></span></div>
+          <div class="recap-row" id="r1"><div class="recap-dot"></div><span class="recap-label">Passeport valide et en règle</span><span class="recap-note"></span></div>
+          <div class="recap-row" id="r2"><div class="recap-dot"></div><span class="recap-label">Informations de vols transmises</span><span class="recap-note">selon votre situation</span></div>
+          <div class="recap-row" id="r3"><div class="recap-dot"></div><span class="recap-label">Enregistrement prévu la veille du départ</span><span class="recap-note"></span></div>
+          <div class="recap-row" id="r4"><div class="recap-dot"></div><span class="recap-label">Transferts vérifiés dans "Mes croisières" > "Itinéraire"</span><span class="recap-note"></span></div>
+          <div class="recap-row" id="r5"><div class="recap-dot"></div><span class="recap-label">Visa vérifié</span><span class="recap-note">selon destination</span></div>
+          <div class="recap-row" id="r6"><div class="recap-dot"></div><span class="recap-label">Régimes alimentaires et besoins signalés</span><span class="recap-note"></span></div>
+          <div class="recap-row" id="r7"><div class="recap-dot"></div><span class="recap-label">Assurance souscrite</span><span class="recap-note"></span></div>
+        </div>
+      </div>
+
+      <!-- ══ BON À SAVOIR ══════════════════════════ -->
+      <div class="bas-heading">Bon à savoir avant de partir</div>
+      <p class="bas-sub">Ces éléments ne nécessitent pas d'action immédiate</p>
+      <div class="bas-grid">
+        <div class="bas-card"><div class="bas-card-title">Bagages</div><div class="bas-card-text">Vêtements adaptés au climat, chaussures confortables, adaptateur électrique si besoin.</div></div>
+        <div class="bas-card"><div class="bas-card-title">Médicaments</div><div class="bas-card-text">Quantité suffisante pour tout le séjour, ordonnance recommandée, trousse de premiers soins. Tout besoin médical doit être signalé avant le départ.</div></div>
+        <div class="bas-card"><div class="bas-card-title">Argent</div><div class="bas-card-text">Renseignez-vous sur la monnaie locale et prévoyez des espèces pour les dépenses courantes.</div></div>
+      </div>
+
+      <!-- ══ BANDEAU AIDE ══ -->
+      <div class="help-band">
+        <div class="help-band-txt">
+          <div class="help-band-title">Besoin d'aide ?</div>
+          <div class="help-band-sub">Notre équipe est disponible pour vous accompagner à chaque étape.</div>
+        </div>
+        <a href="mailto:concierge@filovent.com" class="help-band-link">concierge@filovent.com</a>
+      </div>
+
+    </div><!-- /main-content -->
+  </div><!-- /main-wrap -->
+</div><!-- /layout -->
+
+<script>
+/* ═══════════ LOGIQUE MÉTIER — INCHANGÉE ═══════════ */
+const G = { pass:{skip:false}, visa:{skip:false}, reg:{skip:false}, ass:{skip:false} };
+let volsChoice = null;
+const SUBS  = { a:['a1','a2'], b:['b1','b2','b3'], c:['c1','c2','c3'], d:['d1','d2','d3'] };
+const ENREG = { a:'a1', b:'b2', c:'c2', d:'d2' };
+const TRANS = { a:'a2', b:'b3', c:'c3', d:'d3' };
+
+['a','b','c','d'].forEach(x => document.getElementById('btn-'+x).addEventListener('click',()=>selectVols(x)));
+
+function toggleStep(id) {
+  const bb=document.getElementById('bb-'+id), bc=document.getElementById('bc-'+id);
+  bb.classList.toggle('open',!bb.classList.contains('open'));
+  bc.classList.toggle('open',!bc.classList.contains('open'));
+}
+
+function toggleCI(el,group) {
+  const sr=document.getElementById('skip-'+group);
+  if(sr&&sr.classList.contains('active')){sr.classList.remove('active');document.getElementById('sb-'+group).innerHTML='';G[group].skip=false;}
+  el.classList.toggle('ok');
+  updateGroup(group);
+}
+
+function toggleSkip(group) {
+  const sr=document.getElementById('skip-'+group);
+  if(sr.classList.contains('active')){sr.classList.remove('active');document.getElementById('sb-'+group).innerHTML='';G[group].skip=false;}
+  else{sr.classList.add('active');document.getElementById('sb-'+group).innerHTML='–';G[group].skip=true;document.querySelectorAll('#cl-'+group+' .ci').forEach(c=>c.classList.remove('ok'));}
+  updateGroup(group);
+}
+
+function updateGroup(group) {
+  const items=document.querySelectorAll('#cl-'+group+' .ci');
+  const checked=document.querySelectorAll('#cl-'+group+' .ci.ok').length;
+  const prog=document.getElementById('czp-'+group);
+  if(prog) prog.textContent=G[group].skip?'Ignoré':checked+' / '+items.length;
+  updateStepStatus((group==='reg'||group==='ass')?'b-infos':'b-'+group);
+  refresh();
+}
+
+function updateStepStatus(stepId) {
+  const groups=stepId==='b-infos'?['reg','ass']:[stepId.replace('b-','')];
+  let checked=0,total=0;
+  groups.forEach(g=>{const items=document.querySelectorAll('#cl-'+g+' .ci');total+=items.length;checked+=G[g]&&G[g].skip?items.length:document.querySelectorAll('#cl-'+g+' .ci.ok').length;});
+  const el=document.getElementById(stepId), bs=document.getElementById('bs-'+stepId.replace('b-',''));
+  el.classList.remove('done','partial');
+  if(checked===total&&total>0){el.classList.add('done');bs.textContent='Complété';}
+  else if(checked>0){el.classList.add('partial');bs.textContent=checked+' / '+total+' éléments validés';}
+  else{bs.textContent='À compléter';}
+}
+
+function selectVols(choice) {
+  volsChoice=choice;
+  ['a','b','c','d'].forEach(x=>{
+    document.getElementById('btn-'+x).className='vols-btn'+(x===choice?' sel-'+choice:' hidden');
+    document.getElementById('cas-'+x).classList.toggle('open',x===choice);
+  });
+  ['a','b','c','d'].filter(x=>x!==choice).forEach(x=>SUBS[x].forEach(s=>document.querySelectorAll('#cl-'+s+' .ci').forEach(c=>c.classList.remove('ok'))));
+  document.getElementById('vols-change').classList.add('visible');
+  syncLocks(); updateVols();
+}
+
+function resetVols() {
+  volsChoice=null;
+  ['a','b','c','d'].forEach(x=>{
+    document.getElementById('btn-'+x).className='vols-btn';
+    document.getElementById('cas-'+x).classList.remove('open');
+    SUBS[x].forEach(s=>document.querySelectorAll('#cl-'+s+' .ci').forEach(c=>c.classList.remove('ok')));
+  });
+  document.getElementById('vols-change').classList.remove('visible');
+  document.getElementById('b-vols').classList.remove('done','partial');
+  document.getElementById('bs-vols').textContent='À compléter';
+  refresh();
+}
+
+function toggleSubCI(el,sub) {
+  const isTransfer=volsChoice&&TRANS[volsChoice]===sub;
+  if(isTransfer){
+    const enregOk=document.querySelector('#cl-'+ENREG[volsChoice]+' .ci')?.classList.contains('ok');
+    if(!enregOk){
+      showToast('Veuillez d\'abord confirmer votre enregistrement — c\'est obligatoire.');
+      const enregEl=document.querySelector('#cl-'+ENREG[volsChoice]+' .ci');
+      if(enregEl){enregEl.style.animation='shake .4s ease';setTimeout(()=>enregEl.style.animation='',450);}
+      return;
+    }
+  }
+  el.classList.toggle('ok'); syncLocks(); updateVols();
+}
+
+function syncLocks() {
+  if(!volsChoice) return;
+  const enregOk=document.querySelector('#cl-'+ENREG[volsChoice]+' .ci')?.classList.contains('ok');
+  const transEl=document.querySelector('#cl-'+TRANS[volsChoice]+' .ci');
+  if(transEl){transEl.classList.toggle('locked',!enregOk);if(!enregOk)transEl.classList.remove('ok');}
+}
+
+let toastTimer=null;
+function showToast(msg) {
+  let t=document.getElementById('toast');
+  if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}
+  t.textContent=msg; t.classList.add('show');
+  if(toastTimer) clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+function updateVols() {
+  if(!volsChoice){refresh();return;}
+  let checked=0,total=0;
+  SUBS[volsChoice].forEach(s=>{total+=document.querySelectorAll('#cl-'+s+' .ci').length;checked+=document.querySelectorAll('#cl-'+s+' .ci.ok').length;});
+  const el=document.getElementById('b-vols'),bs=document.getElementById('bs-vols');
+  el.classList.remove('done','partial');
+  if(checked===total&&total>0){el.classList.add('done');bs.textContent='Complété';}
+  else if(checked>0){el.classList.add('partial');bs.textContent=checked+' / '+total+' éléments validés';}
+  else{bs.textContent='À compléter';}
+  refresh();
+}
+
+function refresh() {
+  const subs=volsChoice?SUBS[volsChoice]:[];
+  let done=0,total=0;
+  ['pass','visa','reg','ass'].forEach(g=>{const items=document.querySelectorAll('#cl-'+g+' .ci');total+=items.length;done+=G[g].skip?items.length:document.querySelectorAll('#cl-'+g+' .ci.ok').length;});
+  subs.forEach(s=>{total+=document.querySelectorAll('#cl-'+s+' .ci').length;done+=document.querySelectorAll('#cl-'+s+' .ci.ok').length;});
+  if(!volsChoice){
+    const ft=['pass','visa','reg','ass'].reduce((a,g)=>a+document.querySelectorAll('#cl-'+g+' .ci').length,0);
+    document.getElementById('gCount').textContent=done+' / '+ft+'+';
+    document.getElementById('gFill').style.width=ft>0?Math.round(done/ft*100)+'%':'0%';
+  } else {
+    document.getElementById('gCount').textContent=done+' / '+total;
+    document.getElementById('gFill').style.width=total>0?Math.round(done/total*100)+'%':'0%';
+  }
+  const ci=(id,idx)=>document.querySelectorAll('#cl-'+id+' .ci')[idx]?.classList.contains('ok');
+  const infoT=volsChoice==='b'?ci('b1',0):volsChoice==='c'?ci('c1',0):volsChoice==='d'?ci('d1',0):false;
+  const enreg=volsChoice==='a'?ci('a1',0):volsChoice==='b'?ci('b2',0):volsChoice==='c'?ci('c2',0):volsChoice==='d'?ci('d2',0):false;
+  const transf=volsChoice==='a'?ci('a2',0):volsChoice==='b'?ci('b3',0):volsChoice==='c'?ci('c3',0):volsChoice==='d'?ci('d3',0):false;
+  const map=[
+    {id:'r0',ok:ci('pass',3),skip:G.pass.skip},{id:'r1',ok:ci('pass',0),skip:G.pass.skip},
+    {id:'r2',ok:infoT,skip:volsChoice==='a'},{id:'r3',ok:enreg,skip:false},
+    {id:'r4',ok:transf,skip:false},{id:'r5',ok:ci('visa',0),skip:G.visa.skip},
+    {id:'r6',ok:ci('reg',0),skip:G.reg.skip},{id:'r7',ok:ci('ass',0),skip:G.ass.skip}
+  ];
+  let rdone=0;
+  map.forEach(m=>{const ri=document.getElementById(m.id);ri.classList.remove('ok','skip');if(m.skip){ri.classList.add('skip');rdone++;}else if(m.ok){ri.classList.add('ok');rdone++;}});
+  document.getElementById('rFill').style.width=Math.round(rdone/map.length*100)+'%';
+  document.getElementById('rCount').textContent=rdone+' / '+map.length;
+}
+
+updateStepStatus('b-infos');
+refresh();
+
+/* ═══════════════════════════════════════════
+   LOGIQUE UPLOAD DOCUMENTS
+   — Connexion CRM à brancher côté back-end —
+═══════════════════════════════════════════ */
+
+// Stockage en mémoire (les devs remplaceront par un vrai appel API)
+const FILES = {};
+
+// Map upload-id → {ciId, group, isSub}
+const UPLOAD_MAP = {
+  'pass': { ciId: 'ci-pass-doc', group: 'pass',  isSub: false },
+  'vb':   { ciId: 'ci-b1-doc',   group: 'b1',    isSub: true  },
+  'vc':   { ciId: 'ci-c1-doc',   group: 'c1',    isSub: true  },
+  'vd':   { ciId: 'ci-d1-doc',   group: 'd1',    isSub: true  },
+};
+
+const DEFAULT_LABELS = {
+  'pass': 'Déposer ou sélectionner la copie du passeport',
+  'vb':   'Déposer votre confirmation de vols intérieurs',
+  'vc':   'Déposer votre confirmation de vols internationaux',
+  'vd':   'Déposer vos confirmations de vols',
+};
+const DEFAULT_ICOS = {
+  'pass': '📄', 'vb': '✈️', 'vc': '✈️', 'vd': '✈️',
+};
+
+function handleFiles(id, fileList) {
+  if (!fileList || fileList.length === 0) return;
+  if (!FILES[id]) FILES[id] = [];
+  Array.from(fileList).forEach(f => FILES[id].push(f));
+  renderFiles(id);
+  updateZone(id);
+  autoCheck(id);
+  // TODO: les devs connecteront ici l'appel API vers le CRM
+  // Ex: uploadToCRM(id, FILES[id]);
+}
+
+function renderFiles(id) {
+  const list = document.getElementById('ul-' + id);
+  if (!list) return;
+  list.innerHTML = '';
+  (FILES[id] || []).forEach((f, i) => {
+    const ext = f.name.split('.').pop().toLowerCase();
+    const ico = ext === 'pdf' ? '📄' : ['jpg','jpeg','png','webp'].includes(ext) ? '🖼️' : '📎';
+    const sz = f.size < 1024*1024 ? Math.round(f.size/1024)+'Ko' : (f.size/1024/1024).toFixed(1)+'Mo';
+    const div = document.createElement('div');
+    div.className = 'upload-file';
+    div.innerHTML = `<span class="upload-file-ico">${ico}</span>
+      <span class="upload-file-name">${f.name}</span>
+      <span class="upload-file-size">${sz}</span>
+      <button class="upload-file-del" onclick="removeFile('${id}',${i})" title="Supprimer ce fichier">✕</button>`;
+    list.appendChild(div);
+  });
+}
+
+function removeFile(id, idx) {
+  if (!FILES[id]) return;
+  FILES[id].splice(idx, 1);
+  renderFiles(id);
+  if (FILES[id].length === 0) { resetZone(id); uncheck(id); }
+  else updateZone(id);
+}
+
+function updateZone(id) {
+  const zone = document.getElementById('uz-' + id);
+  const ico  = document.getElementById('uico-' + id);
+  const txt  = document.getElementById('utxt-' + id);
+  const cta  = document.getElementById('ucta-' + id);
+  if (!zone) return;
+  const n = (FILES[id]||[]).length;
+  zone.classList.add('done');
+  if (ico) ico.textContent = '✅';
+  if (txt) txt.textContent = n + ' fichier' + (n > 1 ? 's' : '') + ' ajouté' + (n > 1 ? 's' : '');
+  if (cta) cta.textContent = 'Modifier';
+}
+
+function resetZone(id) {
+  const zone = document.getElementById('uz-' + id);
+  const ico  = document.getElementById('uico-' + id);
+  const txt  = document.getElementById('utxt-' + id);
+  const cta  = document.getElementById('ucta-' + id);
+  if (!zone) return;
+  zone.classList.remove('done');
+  if (ico) ico.textContent = DEFAULT_ICOS[id] || '📎';
+  if (txt) txt.textContent = DEFAULT_LABELS[id] || 'Déposer un fichier';
+  if (cta) cta.textContent = 'Parcourir';
+}
+
+function autoCheck(id) {
+  const m = UPLOAD_MAP[id];
+  if (!m) return;
+  const el = document.getElementById(m.ciId);
+  if (!el || el.classList.contains('ok')) return;
+  el.classList.add('ok');
+  if (m.isSub) updateVols();
+  else updateGroup(m.group);
+}
+
+function uncheck(id) {
+  const m = UPLOAD_MAP[id];
+  if (!m) return;
+  const el = document.getElementById(m.ciId);
+  if (!el) return;
+  el.classList.remove('ok');
+  if (m.isSub) updateVols();
+  else updateGroup(m.group);
+}
+
+// Drag & drop sur toutes les zones
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.upload-zone').forEach(zone => {
+    const id = zone.id.replace('uz-', '');
+    zone.addEventListener('dragover',  e => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop',      e => {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      handleFiles(id, e.dataTransfer.files);
+    });
+  });
+});
+</script>
+</body>
+</html>
